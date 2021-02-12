@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-  <dishes-list/>
+  <!-- <dishes-list/> -->
     
   </div>
 </template>

@@ -15,21 +15,25 @@
 <script>
 import DishesList from './components/DishesList';
 import NewDishForm from './components/NewDishForm';
+import EditDishForm from './components/EditDishForm';
 import axios from 'axios'
 
 export default {
+
   name: 'app',
+
   components: {
     DishesList,
-    NewDishForm
+    NewDishForm,
+    EditDishForm
   },
   
   data() {
     return {
       newDish: {} 
-
     };
   },
+  
   methods: {
     async addDish(dish) {
       try { await axios
