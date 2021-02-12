@@ -1,7 +1,7 @@
 <template>
   <div class="home">
-    <dishes-list/>
-    <new-dish-form/>
+  <dishes-list/>
+    
   </div>
 </template>
 

@@ -3,9 +3,11 @@
    
     <ul>
         <li v-for='dish in dishes' v-bind:key='dish.id'>
-            {{dish.name}}
-            <img v-bind:src='dish.image'/> 
-            {{dish.description}}
+            {{dish.name}} <br>
+            <img v-bind:src='dish.image'/> <br>
+            {{dish.description}} <br>
+            <button>Delete</button>
+            <button>edit</button> 
         </li>
     </ul>
     
@@ -41,6 +43,10 @@ export default {
 </script>
 
 <style>
+#dishList img {
+    width: 20vw;
+    height: 15vw;
 
+}
 
 </style>

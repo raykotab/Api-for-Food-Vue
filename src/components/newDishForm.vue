@@ -9,7 +9,7 @@
       name="new-dish-name"
       placeholder="Name"
       autocomplete="off"
-      v-model.lazy="name"
+      v-model.lazy="dish.name"
     />
     <input
       type="text"
@@ -17,7 +17,7 @@
       name="new-dish-image"
       placeholder="Image url"
       autocomplete="off"
-      v-model.lazy="image"
+      v-model.lazy="dish.image"
       
     />
     <input
@@ -26,7 +26,7 @@
       name="new-dish-description"
       placeholder="Description"
       autocomplete="off"
-      v-model.lazy="description"
+      v-model.lazy="dish.description"
      
     />
     <button type="submit">
@@ -37,23 +37,28 @@
 
 <script>
 
+//import TutorialDataService from "../services/TutorialDataService";
+
 
 export default {
     name: 'NewDishForm',
     methods: {
         onSubmit() {
-            this.$emit("dish-added", this.name);
+          this.$emit("dish-added", this.dish);
         }
     },
 
     data() {
-    return {
-      name: "",
-      image: "",
-      description: ""
-    };
+      return {
+        dish: {
+          name: "",
+          image: "",
+          description: ""
+        }
+      };
   }
 };
+
 
 </script>
 
