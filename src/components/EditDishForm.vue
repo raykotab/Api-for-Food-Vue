@@ -1,25 +1,43 @@
 <template>
   <form class="stack-small" @submit.prevent="onSubmit">
     <div>
-      <label class="edit-label">Edit Name for &quot;{{dish.name}}&quot;</label>
-      <input :id="name" type="text" autocomplete="off" v-model.lazy.trim="newName" />
+      <label class="edit-label">
+        Edit Name for &quot;{{dish.name}}&quot;
+      </label>
+      <input 
+        :id="id" 
+        type="text" 
+        autocomplete="off" 
+        v-model.lazy.trim="newName" />
     </div>
     <div>
-      <label class="edit-label">Edit Image for &quot;{{dish.image}}&quot;</label>
-      <input :id="image" type="text" autocomplete="off" v-model.lazy.trim="newImage" />
+      <label class="edit-label">
+        Edit Image for &quot;{{dish.image}}&quot;
+      </label>
+      <input 
+        :id="id" 
+        type="text" 
+        autocomplete="off" 
+        v-model.lazy.trim="newImage" />
     </div>
     <div>
-      <label class="edit-label">Edit Description for &quot;{{dish.description}}&quot;</label>
-      <input :id="description" type="text" autocomplete="off" v-model.lazy.trim="newDescription" />
+      <label class="edit-label">
+        Edit Description for &quot;{{dish.description}}&quot;
+      </label>
+      <input 
+        :id="id" 
+        type="text" 
+        autocomplete="off" 
+        v-model.lazy.trim="newDescription" />
     </div>
     <div class="btn-group">
       <button type="button" class="btn" @click="onCancel">
         Cancel
-        <span class="visually-hidden">editing {{dish.name}}</span>
+        <span class="visually-hidden">editing {{dish.id}}</span>
       </button>
       <button type="submit" class="btn btn__primary">
         Save
-        <span class="visually-hidden">edit for {{dish.name}}</span>
+        <span class="visually-hidden">edit for {{dish.id}}</span>
       </button>
     </div>
   </form>

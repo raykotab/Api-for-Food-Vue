@@ -5,19 +5,19 @@ class DishesDataService {
     return http.get("/dishes");
   }
 
-  get(id) {
+  getOne(id) {
     return http.get(`/dishes/${id}`);
   }
 
-  create(data) {
+  createDish(data) {
     return http.post("/dishes", data);
   }
 
-  update(id, data) {
+  updateDish(id, data) {
     return http.put(`/dishes/${id}`, data);
   }
 
-  delete(id) {
+  deleteDish(id) {
     return http.delete(`/dishes/${id}`);
   }
 
