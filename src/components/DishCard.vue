@@ -17,7 +17,54 @@
 </template>
 
 <script>
+
+import EditDishForm from "./EditDishForm";
+import DishesDataService from '../services/DishesDataService';
+
 export default {
+
+    name: 'DishCard',
+
+    components: {
+        EditDishForm,
+
+    },
+
+    data() {
+        return {
+            isEditing : false,
+            editingData: {
+                newName: "",
+                newImage: "",
+                newDescription: "",
+            } 
+        }
+    },
+
+    methods: {
+        async deleteDish(id) {
+            const response = await DishesDataService.deleteDish(id)
+            //this.$emit('-deleted');
+            this.listAllDishes();
+        },
+        toggleToDishEditForm() {
+            this.isEditing = true;
+        },
+
+        editDish (id, editingData) {
+            console.log(id);
+            axios.put('http://127.0.0.1:8000/api/dishes/{id}').then(response => {
+               
+            }, this.listAllDishes())
+        },
+        dishEdited(newLabel) {
+            this.$emit('dish-edited', newLabel);
+            this.isEditing = false;
+        },
+        editCancelled() {
+            this.isEditing = false;
+        }  
+    }
 
 }
 </script>

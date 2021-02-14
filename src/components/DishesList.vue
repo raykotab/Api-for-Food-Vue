@@ -20,7 +20,7 @@
                 </div>
             </div>
             <edit-dish-form v-else :id="id" :name="newName" :image="newImage" :description="newDescription"
-                    @dish-edited="dishEdited"
+                    @dish-edited="editDish"
                     @dish-cancelled="editCancelled">
             </edit-dish-form>    
         </li>
@@ -82,29 +82,12 @@ export default {
             //this.$emit('-deleted');
             this.listAllDishes();
         },
-
-        // async deleteDish(dishId) {
-           
-        //     try { await axios
-        //         ({
-        //             method: 'delete',
-        //             url: `http://127.0.0.1:8000/api/dishes/${dishId}`,
-        //             headers: {},
-        //             data: JSON.stringify()
-        //         })
-        //         this.$emit('dish-deleted', this.dish);
-                
-        //     }
-        //     catch (error) {
-        //     console.log(error);
-        //     }
-        // },
-
-
         toggleToDishEditForm() {
             this.isEditing = true;
         },
+
         editDish (id, editingData) {
+            console.log(id);
             axios.put('http://127.0.0.1:8000/api/dishes/{id}').then(response => {
                
             }, this.listAllDishes())

@@ -75,7 +75,7 @@ export default {
   methods: {
     onSubmit() {
       if (this.editedDish && this.editedDish !== this.editedDish) {
-        this.$emit("dish-edited", this.editedDish);
+        this.$emit("dish-edited", this.id, this.editedDish);
       }
     },
     onCancel() {
