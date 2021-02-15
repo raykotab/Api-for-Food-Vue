@@ -5,11 +5,11 @@
         Edit Name for &quot;{{dish.name}}&quot;
       </label>
       <input 
-        :id="id" 
+        name="name"
         type="text" 
         autocomplete="off" 
-        v-model.lazy.trim="newName" 
-        v-bind:name="dish.name" />
+        v-model.lazy.trim="editedDish.name" 
+        v-bind="dish.name" />
 
     </div>
     <div>
@@ -17,10 +17,10 @@
         Edit Image for &quot;{{dish.image}}&quot;
       </label>
       <input 
-        :id="id" 
+        name="image"
         type="text" 
         autocomplete="off" 
-        v-model.lazy.trim="newImage" 
+        v-model.lazy.trim="editedDish.image" 
         v-bind="dish.image" />
 
     </div>
@@ -29,10 +29,10 @@
         Edit Description for &quot;{{dish.description}}&quot;
       </label>
       <input 
-        :id="id" 
+         name="description"
         type="text" 
         autocomplete="off" 
-        v-model.lazy.trim="newDescription"
+        v-model.lazy.trim="editedDish.description"
         v-bind:description="dish.description" />
     </div>
     <div class="btn-group">
@@ -75,9 +75,9 @@ export default {
     return {
       
         editedDish: {
-            newName: null,
-            newImage: null,
-            newDescription: null
+            name: null,
+            image: null,
+            description: null
         }
     };
   },
@@ -85,10 +85,9 @@ export default {
   methods: {
 
     onSubmit() {
-      console.log(editedDish);
-      // if (this.editedDish && this.editedDish !== this.editedDish) {
-      //   this.$emit("dish-edited", this.id, this.editedDish);
-      // }
+      console.log(this.editedDish.name);
+      this.$emit("dish-edited", this.dish.id, this.editedDish);
+    
     },
     onCancel() {
       this.$emit("edit-cancelled");

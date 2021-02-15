@@ -14,6 +14,7 @@ class DishesDataService {
   }
 
   updateDish(id, data) {
+    data = JSON.stringify(data);
     return http.put(`/dishes/${id}`, data);
   }
 

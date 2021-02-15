@@ -9,7 +9,7 @@
                 @dish-edited="editDish(dish.id, $event)"></dish-card> -->
             <div v-if="!isEditing" :label="dish.label" :id="dish.id"
                 @dish-deleted="deleteDish(dish.id)"
-                @dish-edited="editDish(dish, $event)">
+                @dish-edited="editDish(id, dish)">
                 {{dish.name}} <br>
                 <img v-bind:src='dish.image'/> <br>
                 {{dish.description}} <br>
@@ -88,15 +88,15 @@ export default {
             
         },
 
-        editDish (id, editingData) {
-            console.log(id);
-            axios.put('http://127.0.0.1:8000/api/dishes/{id}', editingData).then(response => {
-               
-            }, this.listAllDishes())
+        async editDish (id, editingData) {
+            // console.log(id + " " + editingData.newName);
+            // axios.put(`http://127.0.0.1:8000/api/dishes/${id}`, editingData).then(response => {
+            const response = await DishesDataService.updateDish(id, editingData)
+            this.isEditing = false;
+            this.listAllDishes()
         },
         dishEdited(newLabel) {
             this.$emit('dish-edited', newLabel);
-            this.isEditing = false;
         },
         editCancelled() {
             this.isEditing = false;
