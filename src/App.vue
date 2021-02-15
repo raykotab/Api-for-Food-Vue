@@ -2,6 +2,7 @@
   <div id="app">
    
        <dishes-list/>
+       <!-- <dish-card/> -->
     <div id="nav">
      
     </div>
@@ -14,7 +15,7 @@
 <script>
 
 import DishesList from './components/DishesList';
-
+// import DishCard from './components/DishCard';
 
 export default {
 
@@ -22,6 +23,7 @@ export default {
 
   components: {
     DishesList,
+    
   },
 };
 

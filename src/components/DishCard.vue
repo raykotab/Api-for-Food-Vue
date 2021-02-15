@@ -51,12 +51,14 @@ export default {
             this.isEditing = true;
         },
 
-        editDish (id, editingData) {
+        async editDish (id, editingData) {
             console.log(id);
-            axios.put('http://127.0.0.1:8000/api/dishes/{id}').then(response => {
-               
-            }, this.listAllDishes())
+            const response = await
+            DishesDataService.updateDish(id, editingData)
+            this.dish = editingData
+             this.listAllDishes()
         },
+
         dishEdited(newLabel) {
             this.$emit('dish-edited', newLabel);
             this.isEditing = false;

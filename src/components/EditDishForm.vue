@@ -8,7 +8,9 @@
         :id="id" 
         type="text" 
         autocomplete="off" 
-        v-model.lazy.trim="newName" />
+        v-model.lazy.trim="newName" 
+        v-bind:name="dish.name" />
+
     </div>
     <div>
       <label class="edit-label">
@@ -18,7 +20,9 @@
         :id="id" 
         type="text" 
         autocomplete="off" 
-        v-model.lazy.trim="newImage" />
+        v-model.lazy.trim="newImage" 
+        v-bind="dish.image" />
+
     </div>
     <div>
       <label class="edit-label">
@@ -28,7 +32,8 @@
         :id="id" 
         type="text" 
         autocomplete="off" 
-        v-model.lazy.trim="newDescription" />
+        v-model.lazy.trim="newDescription"
+        v-bind:description="dish.description" />
     </div>
     <div class="btn-group">
       <button type="button" class="btn" @click="onCancel">
@@ -46,37 +51,44 @@
 <script>
 export default {
   props: {
-    name: {
-      type: String,
-      required: true
+    dish: {
+      type: Object,
     },
-    image: {
-      type: String,
-      required: true
-    },
-    description: {
-      type: String,
-      required: true
-    },
-    id: {
-      type: String,
-      required: true
-    }
+    // name: {
+    //   type: String,
+    //   required: true
+    // },
+    // image: {
+    //   type: String,
+    //   required: true
+    // },
+    // description: {
+    //   type: String,
+    //   required: true
+    // },
+    // id: {
+    //   type: String,
+    //   required: true
+    // }
   },
   data() {
     return {
+      
         editedDish: {
-            newName: this.name,
-            newImage: this.image,
-            newDescription: this.description
+            newName: null,
+            newImage: null,
+            newDescription: null
         }
     };
   },
+  
   methods: {
+
     onSubmit() {
-      if (this.editedDish && this.editedDish !== this.editedDish) {
-        this.$emit("dish-edited", this.id, this.editedDish);
-      }
+      console.log(editedDish);
+      // if (this.editedDish && this.editedDish !== this.editedDish) {
+      //   this.$emit("dish-edited", this.id, this.editedDish);
+      // }
     },
     onCancel() {
       this.$emit("edit-cancelled");

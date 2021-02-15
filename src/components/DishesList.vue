@@ -4,14 +4,17 @@
     <new-dish-form @dish-added="createDish"></new-dish-form>
     <ul>
         <li v-for='dish in dishes' v-bind:key='dish.id'>
+            <!-- <dish-card  v-if="!isEditing" :label="dish.label" :id="dish.id"
+                @dish-deleted="deleteDish(dish.id)"
+                @dish-edited="editDish(dish.id, $event)"></dish-card> -->
             <div v-if="!isEditing" :label="dish.label" :id="dish.id"
                 @dish-deleted="deleteDish(dish.id)"
-                @dish-edited="editDish(dish.id, $event)">
+                @dish-edited="editDish(dish, $event)">
                 {{dish.name}} <br>
                 <img v-bind:src='dish.image'/> <br>
                 {{dish.description}} <br>
                 <div class="btn-group">
-                    <button type="button" class="btn"  @click="toggleToDishEditForm">
+                    <button type="button" class="btn"  @click="toggleToDishEditForm(dish)">
                         Edit <span class="visually-hidden">{{dish.id}}</span>
                     </button>
                     <button type="button" class="btn btn__danger" @click="deleteDish(dish.id)">
@@ -19,9 +22,9 @@
                     </button>
                 </div>
             </div>
-            <edit-dish-form v-else :id="id" :name="newName" :image="newImage" :description="newDescription"
+            <edit-dish-form v-if="isEditing" :dish="dish"
                     @dish-edited="editDish"
-                    @dish-cancelled="editCancelled">
+                    @edit-cancelled="editCancelled">
             </edit-dish-form>    
         </li>
     </ul>
@@ -34,6 +37,7 @@ import axios from 'axios'
 import NewDishForm from './NewDishForm';
 import EditDishForm from "./EditDishForm";
 import DishesDataService from '../services/DishesDataService';
+import DishCard from './DishCard';
 
 export default {
     
@@ -41,18 +45,15 @@ export default {
 
     components: {
         EditDishForm,
-        NewDishForm
+        NewDishForm,
+        DishCard
     },
 
     data() {
         return {
             dishes: [],
             isEditing : false,
-            editingData: {
-                newName: "",
-                newImage: "",
-                newDescription: "",
-            }
+            
         }
     },
 
@@ -79,16 +80,17 @@ export default {
 
         async deleteDish(id) {
             const response = await DishesDataService.deleteDish(id)
-            //this.$emit('-deleted');
+            
             this.listAllDishes();
         },
-        toggleToDishEditForm() {
+        toggleToDishEditForm(dish) {
             this.isEditing = true;
+            
         },
 
         editDish (id, editingData) {
             console.log(id);
-            axios.put('http://127.0.0.1:8000/api/dishes/{id}').then(response => {
+            axios.put('http://127.0.0.1:8000/api/dishes/{id}', editingData).then(response => {
                
             }, this.listAllDishes())
         },
